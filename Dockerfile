@@ -12,24 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Build bitcoind
+# Build unelmacoind
 FROM ubuntu:18.04 as unelmacoind-builder
+ENV LANG C.UTF-8
 
 RUN mkdir -p /app \
   && chown -R nobody:nogroup /app
 WORKDIR /app
 
 # Source: https://github.com/unelmacoin/unelmacoin-main/blob/master/doc/build-unix.md#ubuntu--debian
-RUN apt-get update && apt-get install -y make gcc g++ autoconf autotools-dev bsdmainutils build-essential git libboost-all-dev \
-  libcurl4-openssl-dev libdb++-dev libevent-dev libssl-dev libtool pkg-config python python-pip libzmq3-dev wget
+RUN set -xe; \
+  apt-get update; \
+  apt-get install --no-install-recommends --fix-missing -y build-essential autotools-dev bsdmainutils automake autotools-dev autoconf pkg-config wget git libboost-dev libboost-all-dev libboost-container-dev apt-utils libssl-dev libevent-dev libsodium-dev \
+    librsvg2-bin cmake libcap-dev libdb++-dev libz-dev libtool libbz2-dev python-setuptools python3-setuptools xz-utils ccache cargo libgmp-dev \
+    bsdmainutils curl ca-certificates; \
+    rm -rf /var/lib/apt/lists/*; \
+    /usr/sbin/update-ccache-symlinks;
 
-# VERSION: Bitcoin Core 2.0.0
+# VERSION: Unelmacoin Core 2.0.0
 RUN git clone https://github.com/unelmacoin/unelmacoin-main \
-  && cd unelmacoin-main \
+  && cd unelmacoin-main
 
 RUN cd unelmacoin-main \
   && ./autogen.sh \
-  && ./configure --enable-static --with-pic --enable-glibc-back-compat --disable-tests --without-miniupnpc --without-gui --with-incompatible-bdb --disable-hardening --disable-zmq --disable-bench  \
+  && ./configure --enable-static --with-pic --disable-shared --enable-glibc-back-compat --disable-tests --without-miniupnpc --without-gui --with-incompatible-bdb --disable-hardening --disable-zmq --disable-bench \
   && make
 
 RUN mv unelmacoin-main/src/unelmacoind /app/unelmacoind \

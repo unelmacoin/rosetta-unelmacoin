@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package bitcoin
+package unelmacoin
 
 import (
 	"fmt"
@@ -23,8 +23,8 @@ import (
 )
 
 const (
-	// Blockchain is Bitcoin.
-	Blockchain string = "Bitcoin"
+	// Blockchain is Unelmacoin.
+	Blockchain string = "Unelmacoin"
 
 	// MainnetNetwork is the value of the network
 	// in MainnetNetworkIdentifier.
@@ -38,9 +38,9 @@ const (
 	// used in Currency.
 	Decimals = 8
 
-	// SatoshisInBitcoin is the number of
-	// Satoshis in 1 BTC (10^8).
-	SatoshisInBitcoin = 100000000
+	// SatoshisInUnelmacoin is the number of
+	// Satoshis in 1 UNC (10^8).
+	SatoshisInUnelmacoin = 100000000
 
 	// InputOpType is used to describe
 	// INPUT.
@@ -55,7 +55,7 @@ const (
 	CoinbaseOpType = "COINBASE"
 
 	// SuccessStatus is the status of all
-	// Bitcoin operations because anything
+	// Unelmacoin operations because anything
 	// on-chain is considered successful.
 	SuccessStatus = "SUCCESS"
 
@@ -66,10 +66,10 @@ const (
 	SkippedStatus = "SKIPPED"
 
 	// TransactionHashLength is the length
-	// of any transaction hash in Bitcoin.
+	// of any transaction hash in Unelmacoin.
 	TransactionHashLength = 64
 
-	// NullData is returned by bitcoind
+	// NullData is returned by Unelmacoind
 	// as the ScriptPubKey.Type for OP_RETURN
 	// locking scripts.
 	NullData = "nulldata"
@@ -110,7 +110,7 @@ var (
 
 	// TestnetCurrency is the *types.Currency for testnet.
 	TestnetCurrency = &types.Currency{
-		Symbol:   "tBTC",
+		Symbol:   "tUNC",
 		Decimals: Decimals,
 	}
 
@@ -135,25 +135,25 @@ var (
 )
 
 // ScriptPubKey is a script placed on the output operations
-// of a Bitcoin transaction that must be satisfied to spend
+// of a Unelmacoin transaction that must be satisfied to spend
 // the output.
 type ScriptPubKey struct {
-	ASM          string   `json:"asm"`
-	Hex          string   `json:"hex"`
+	ASM          string   `json:"asm,omitempty"`
+	Hex          string   `json:"hex,omitempty"`
 	RequiredSigs int64    `json:"reqSigs,omitempty"`
 	Type         string   `json:"type"`
 	Addresses    []string `json:"addresses,omitempty"`
 }
 
 // ScriptSig is a script on the input operations of a
-// Bitcoin transaction that satisfies the ScriptPubKey
+// Unelmacoin transaction that satisfies the ScriptPubKey
 // on an output being spent.
 type ScriptSig struct {
 	ASM string `json:"asm"`
 	Hex string `json:"hex"`
 }
 
-// BlockchainInfo is information about the Bitcoin network.
+// BlockchainInfo is information about the Unelmacoin network.
 // This struct only contains the information necessary for
 // this implementation.
 type BlockchainInfo struct {
@@ -176,7 +176,7 @@ type PeerInfo struct {
 	SyncedHeaders  int64  `json:"synced_headers"`
 }
 
-// Block is a raw Bitcoin block (with verbosity == 2).
+// Block is a raw Unelmacoin block (with verbosity == 2).
 type Block struct {
 	Hash              string  `json:"hash"`
 	Height            int64   `json:"height"`
@@ -187,7 +187,7 @@ type Block struct {
 	MerkleRoot        string  `json:"merkleroot"`
 	Version           int32   `json:"version"`
 	Size              int64   `json:"size"`
-	Weight            int64   `json:"weight"`
+	Weight            int64   `json:"weight,omitempty"`
 	Bits              string  `json:"bits"`
 	Difficulty        float64 `json:"difficulty"`
 
@@ -223,7 +223,7 @@ type BlockMetadata struct {
 	Difficulty float64 `json:"difficulty,omitempty"`
 }
 
-// Transaction is a raw Bitcoin transaction.
+// Transaction is a raw Unelmacoin transaction.
 type Transaction struct {
 	Hex      string `json:"hex"`
 	Hash     string `json:"txid"`
@@ -231,7 +231,7 @@ type Transaction struct {
 	Vsize    int64  `json:"vsize"`
 	Version  int32  `json:"version"`
 	Locktime int64  `json:"locktime"`
-	Weight   int64  `json:"weight"`
+	Weight   int64  `json:"weight,omitempty"`
 
 	Inputs  []*Input  `json:"vin"`
 	Outputs []*Output `json:"vout"`
@@ -260,7 +260,7 @@ type TransactionMetadata struct {
 	Weight   int64 `json:"weight,omitempty"`
 }
 
-// Input is a raw input in a Bitcoin transaction.
+// Input is a raw input in a Unelmacoin transaction.
 type Input struct {
 	TxHash      string     `json:"txid"`
 	Vout        int64      `json:"vout"`
@@ -284,7 +284,7 @@ func (i Input) Metadata() (map[string]interface{}, error) {
 	return types.MarshalMap(m)
 }
 
-// Output is a raw output in a Bitcoin transaction.
+// Output is a raw output in a Unelmacoin transaction.
 type Output struct {
 	Value        float64       `json:"value"`
 	Index        int64         `json:"n"`
@@ -301,7 +301,7 @@ func (o Output) Metadata() (map[string]interface{}, error) {
 }
 
 // OperationMetadata is a collection of useful
-// metadata from Bitcoin inputs and outputs.
+// metadata from Unelmacoin inputs and outputs.
 type OperationMetadata struct {
 	// Coinbase Metadata
 	Coinbase string `json:"coinbase,omitempty"`
@@ -499,7 +499,7 @@ func (r rawMempoolResponse) Err() error {
 
 // CoinIdentifier converts a tx hash and vout into
 // the canonical CoinIdentifier.Identifier used in
-// rosetta-bitcoin.
+// rosetta-Unelmacoin.
 func CoinIdentifier(hash string, vout int64) string {
 	return fmt.Sprintf("%s:%d", hash, vout)
 }

@@ -1,4 +1,4 @@
-unelmacoin#!/bin/sh
+#!/bin/sh
 # Copyright 2020 Coinbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -198,7 +198,7 @@ EOF
 
 BINARY=rosetta-unelmacoin
 FORMAT=tar.gz
-OWNER=coinbase
+OWNER=unelmacoin
 REPO="rosetta-unelmacoin"
 PREFIX="$OWNER/$REPO"
 

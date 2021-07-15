@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/unelmacoin/rosetta-unelmacoin/"
+	"github.com/unelmacoin/rosetta-unelmacoin/unelmacoin"
 
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/coinbase/rosetta-sdk-go/storage/encoder"

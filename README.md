@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://circleci.com/gh/unelmacoin/rosetta-unelmacoin/tree/master"><img src="https://circleci.com/gh/unelmacoin/rosetta-unelmacoin/tree/master.svg?style=shield" /></a>
   <a href="https://coveralls.io/github/unelmacoin/rosetta-unelmacoin"><img src="https://coveralls.io/repos/github/unelmacoin/rosetta-unelmacoin/badge.svg" /></a>
-  <a href="https://goreportcard.com/report/github.com/unelmacoin/rosetta-unelmacoin"><img src="https://goreportcard.com/badge/github.com/coinbase/rosetta-unelmacoin" /></a>
+  <a href="https://goreportcard.com/report/github.com/unelmacoin/rosetta-unelmacoin"><img src="https://goreportcard.com/badge/github.com/unelmacoin/rosetta-unelmacoin" /></a>
   <a href="https://github.com/unelmacoin/rosetta-unelmacoin/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/unelmacoin/rosetta-unelmacoin.svg" /></a>
   <a href="https://pkg.go.dev/github.com/unelmacoin/rosetta-unelmacoin?tab=overview"><img src="https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=shield" /></a>
 </p>

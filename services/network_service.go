@@ -17,8 +17,8 @@ package services
 import (
 	"context"
 
-	"github.com/unelmacoin/rosetta-unelmacoin/tree/master/unelmacoin"
-	"github.com/unelmacoin/rosetta-unelmacoin/tree/master/configuration"
+	"github.com/unelmacoin/rosetta-unelmacoin/unelmacoin"
+	"github.com/unelmacoin/rosetta-unelmacoin/configuration"
 
 	"github.com/coinbase/rosetta-sdk-go/server"
 	"github.com/coinbase/rosetta-sdk-go/types"

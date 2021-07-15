@@ -1,4 +1,4 @@
-// Copyright 2020 Coinbase, Inc.
+unelmacoin// Copyright 2020 Coinbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package services
 import (
 	"context"
 
-	"github.com/coinbase/rosetta-bitcoin/bitcoin"
-	"github.com/coinbase/rosetta-bitcoin/configuration"
+	"github.com/unelmacoin/rosetta-unelmacoin/unelmacoin"
+	"github.com/unelmacoin/rosetta-unelmacoin/configuration"
 
 	"github.com/coinbase/rosetta-sdk-go/server"
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -67,7 +67,7 @@ func (s *NetworkAPIService) NetworkStatus(
 
 	peers, err := s.client.GetPeers(ctx)
 	if err != nil {
-		return nil, wrapErr(ErrBitcoind, err)
+		return nil, wrapErr(ErrUnelmacoind, err)
 	}
 
 	cachedBlockResponse, err := s.i.GetBlockLazy(ctx, nil)
@@ -95,8 +95,8 @@ func (s *NetworkAPIService) NetworkOptions(
 			MiddlewareVersion: types.String(MiddlewareVersion),
 		},
 		Allow: &types.Allow{
-			OperationStatuses:       bitcoin.OperationStatuses,
-			OperationTypes:          bitcoin.OperationTypes,
+			OperationStatuses:       unelmacoin.OperationStatuses,
+			OperationTypes:          unelmacoin.OperationTypes,
 			Errors:                  Errors,
 			HistoricalBalanceLookup: HistoricalBalanceLookup,
 			MempoolCoins:            MempoolCoins,

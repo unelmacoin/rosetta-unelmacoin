@@ -321,8 +321,6 @@ func (i *Indexer) Prune(ctx context.Context) error {
 			}
 
 			// Must meet pruning conditions in unelmacoin core
-			// Source:
-			// https://github.com/unelmacoin/unelmacoin/blob/a63a26f042134fa80356860c109edb25ac567552/src/rpc/blockchain.cpp#L953-L960
 			pruneHeight := head.Index - i.pruningConfig.Depth
 			if pruneHeight <= i.pruningConfig.MinHeight {
 				logger.Infow("waiting to prune", "min prune height", i.pruningConfig.MinHeight)

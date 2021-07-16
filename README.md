@@ -21,7 +21,7 @@ USE AT YOUR OWN RISK! COINBASE ASSUMES NO RESPONSIBILITY NOR LIABILITY IF THERE 
 
 ## Overview
 `rosetta-unelmacoin` provides a reference implementation of the Rosetta API for
-Bitcoin in Golang. If you haven't heard of the Rosetta API, you can find more
+Unelmacoin in Golang. If you haven't heard of the Rosetta API, you can find more
 information [here](https://rosetta-api.org).
 
 ## Features
@@ -56,12 +56,12 @@ make build-local
 ### Run
 Running the following commands will start a Docker container in
 [detached mode](https://docs.docker.com/engine/reference/run/#detached--d) with
-a data directory at `<working directory>/bitcoin-data` and the Rosetta API accessible
+a data directory at `<working directory>/unelmacoin-data` and the Rosetta API accessible
 at port `8080`.
 
 #### Mainnet:Online
 ```text
-docker run -d --rm --ulimit "nofile=100000:100000" -v "$(pwd)/bitcoin-data:/data" -e "MODE=ONLINE" -e "NETWORK=MAINNET" -e "PORT=8080" -p 8080:8080 -p 8333:8333 rosetta-unelmacoin:latest
+docker run -d --rm --ulimit "nofile=100000:100000" -v "$(pwd)/unelmacoin-data:/data" -e "MODE=ONLINE" -e "NETWORK=MAINNET" -e "PORT=8080" -p 8080:8080 -p 8333:8333 rosetta-unelmacoin:latest
 ```
 _If you cloned the repository, you can run `make run-mainnet-online`._
 
@@ -73,7 +73,7 @@ _If you cloned the repository, you can run `make run-mainnet-offline`._
 
 #### Testnet:Online
 ```text
-docker run -d --rm --ulimit "nofile=100000:100000" -v "$(pwd)/bitcoin-data:/data" -e "MODE=ONLINE" -e "NETWORK=TESTNET" -e "PORT=8080" -p 8080:8080 -p 18333:18333 rosetta-unelmacoin:latest
+docker run -d --rm --ulimit "nofile=100000:100000" -v "$(pwd)/unelmacoin-data:/data" -e "MODE=ONLINE" -e "NETWORK=TESTNET" -e "PORT=8080" -p 8080:8080 -p 18333:18333 rosetta-unelmacoin:latest
 ```
 _If you cloned the repository, you can run `make run-testnet-online`._
 
@@ -116,7 +116,7 @@ on your OS. There is a great tutorial for how to do this on Linux [here](https:/
 ## Architecture
 `rosetta-unelmacoin` uses the `syncer`, `storage`, `parser`, and `server` package
 from [`rosetta-sdk-go`](https://github.com/coinbase/rosetta-sdk-go) instead
-of a new Bitcoin-specific implementation of packages of similar functionality. Below
+of a new Unelmacoin-specific implementation of packages of similar functionality. Below
 you can find a high-level overview of how everything fits together:
 ```text
                                +------------------------------------------------------------------+
@@ -157,7 +157,7 @@ you can find a high-level overview of how everything fits together:
 ```
 
 ### Optimizations
-* Automatically prune bitcoind while indexing blocks
+* Automatically prune unelmacoind while indexing blocks
 * Reduce sync time with concurrent block indexing
 * Use [Zstandard compression](https://github.com/facebook/zstd) to reduce the size of data stored on disk
 without needing to write a manual byte-level encoding

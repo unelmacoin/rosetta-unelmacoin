@@ -41,6 +41,8 @@ RUN cd unelmacoin-main \
 RUN mv unelmacoin-main/src/unelmacoind /app/unelmacoind \
   && rm -rf unelmacoin-main
 
+RUN ldconfig
+
 # Build Rosetta Server Components
 FROM ubuntu:18.04 as rosetta-builder
 
@@ -64,6 +66,12 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 # Use native remote build context to build in any directory
 COPY . src
+## Cleanup
+RUN cd src \
+&& rm go.sum \
+&& go mod edit -replace github.com/golang/lint=golang.org/x/lint@latest \
+&& go clean -modcache
+
 RUN cd src \
   && go build \
   && cd .. \
@@ -94,4 +102,4 @@ COPY --from=rosetta-builder /app/* /app/
 # Set permissions for everything added to /app
 RUN chmod -R 755 /app/*
 
-CMD ["/app/rosetta-unelmacoind"]
+CMD ["/app/rosetta-unelmacoin"]

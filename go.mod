@@ -1,4 +1,4 @@
-module github.com/coinbase/rosetta-bitcoin
+module github.com/unelmacoin/rosetta-unelmacoin
 
 go 1.13
 

@@ -61,7 +61,8 @@ func logPipe(ctx context.Context, pipe io.ReadCloser, identifier string) error {
 	}
 }
 
-// "StartUnelmacoind ..." starts a unelmacoind daemon in another goroutine
+// "StartUnelmacoind ..."
+// starts a unelmacoind daemon in another goroutine
 // and logs the results to the console.
 func StartUnelmacoind(ctx context.Context, configPath string, g *errgroup.Group) error {
 	logger := utils.ExtractLogger(ctx, "unelmacoind")

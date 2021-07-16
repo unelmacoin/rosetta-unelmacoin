@@ -120,7 +120,7 @@ type Configuration struct {
 	ConfigPath             string
 	Pruning                *PruningConfiguration
 	IndexerPath            string
-	UnelmacoinPath         string
+	UnelmacoindPath        string
 	Compressors            []*encoder.CompressorEntry
 }
 
@@ -143,8 +143,8 @@ func LoadConfiguration(baseDirectory string) (*Configuration, error) {
 			return nil, fmt.Errorf("%w: unable to create indexer path", err)
 		}
 
-		config.UnelmacoinPath = path.Join(baseDirectory, unelmacoindPath)
-		if err := ensurePathExists(config.UnelmacoinPath); err != nil {
+		config.UnelmacoindPath = path.Join(baseDirectory, unelmacoindPath)
+		if err := ensurePathExists(config.UnelmacoindPath); err != nil {
 			return nil, fmt.Errorf("%w: unable to create unelmacoind path", err)
 		}
 	case Offline:

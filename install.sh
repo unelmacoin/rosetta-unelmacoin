@@ -198,7 +198,7 @@ EOF
 
 BINARY=rosetta-unelmacoin
 FORMAT=tar.gz
-OWNER=coinbase
+OWNER=unelmacoin
 REPO="rosetta-unelmacoin"
 PREFIX="$OWNER/$REPO"
 

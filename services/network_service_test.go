@@ -19,8 +19,8 @@ import (
 	"testing"
 
 	"github.com/unelmacoin/rosetta-unelmacoin/unelmacoin"
-	"github.com/coinbase/rosetta-unelmacoin/configuration"
-	mocks "github.com/coinbase/rosetta-unelmacoin/mocks/services"
+	"github.com/unelmacoin/rosetta-unelmacoin/configuration"
+	mocks "github.com/unelmacoin/rosetta-unelmacoin/mocks/services"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 	"github.com/stretchr/testify/assert"
